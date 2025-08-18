@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchestral Forces Survey - Fall 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       :root {
+            /* Elegant music-inspired palette */
+            --primary-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            --secondary-gradient: linear-gradient(135deg, #f8f6f0 0%, #ffffff 100%);
+            --accent-gradient: linear-gradient(135deg, #8b1538 0%, #a91b47 100%);
+            --success-gradient: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            
+            /* Sophisticated shadows */
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
+            --shadow-elegant: 0 4px 20px rgba(139, 21, 56, 0.15);
+            
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* Color variables */
+            --paper-white: #f8f6f0;
+            --ivory: #faf9f6;
+            --charcoal: #2d2d2d;
+            --ink-black: #1a1a1a;
+            --burgundy: #8b1538;
+            --burgundy-light: #a91b47;
+            --gray-light: #e8e6e0;
+            --gray-medium: #9ca3af;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--paper-white);
+            background-image: 
+                linear-gradient(90deg, rgba(45, 45, 45, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(45, 45, 45, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--charcoal);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="90" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            font-weight: 300;
+        }
+/* 
+        .header glow {
+             text-shadow: 
+                0 0 10px var(--gray-medium),
+                0 0 20px var(--gray-medium),
+                0 0 30px var(--gray-medium),
+                0 0 40px var(--gray-medium);
+        } */
+
+        .form-content {
+            padding: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 1rem;
+        }
+
+        .required {
+            color: #e53e3e;
+            margin-left: 4px;
+        }
+
+        input[type="email"],
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: 'Cinzel', serif;
+            transition: var(--transition);
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        input[type="email"]:focus,
+        select:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .instrument-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .instrument-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .instrument-section h3 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-number {
+            background: var(--primary-gradient);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .instrument-select-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .instrument-select-group {
+                grid-template-columns: 1fr;
+            }
+
+            .form-content {
+                padding: 30px;
+            }
+
+            .header {
+                padding: 30px;
+            }
+        }
+
+        .followup-questions {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(-10px);
+        }
+
+        .followup-questions.show {
+            opacity: 1;
+            max-height: 1000px;
+            transform: translateY(0);
+        }
+
+        .followup-questions h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .followup-description {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .radio-group {
+            margin-bottom: 25px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            background: #f8fafc;
+        }
+
+        .radio-option:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-color: rgba(102, 126, 234, 0.2);
+            transform: translateX(4px);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.3);
+            accent-color: var(--burgundy-light);
+        }
+
+        .radio-option.selected {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-color: var(--burgundy-light);
+            color: var(--burgundy);
+            font-weight: 500;
+        }
+
+        .add-instrument-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+            font-family: 'Cinzel', serif;
+        }
+
+        .add-instrument-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .remove-instrument-btn {
+            background: var(--secondary-gradient);
+            color: black;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(240, 147, 251, 0.3);
+        }
+
+        .remove-instrument-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+        }
+
+        .submit-btn {
+            background: var(--success-gradient);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: var(--border-radius);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            margin-top: 40px;
+            box-shadow: 0 6px 20px rgba(129, 255, 239, 0.3);
+            font-family: 'Cinzel', serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 12px 35px rgba(129, 255, 239, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .error {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(102, 126, 234, 0.1);
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, rgba(129, 255, 239, 0.1) 0%, rgba(240, 103, 180, 0.1) 100%);
+            color: #2d3748;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(129, 255, 239, 0.3);
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .success-message h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .other-input {
+            margin-top: 15px;
+            display: none;
+        }
+
+        .instrument-emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+
+        .option-text {
+            flex: 1;
+        }
+
+        .canvas-embed {
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: none;
+            margin: 0;
+        }
+
+        .canvas-embed .container {
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        /* Smooth animations for better UX */
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Orchestral Forces Survey</h1>
+            <p>Help us understand your musical background and capabilities</p>
+        </div>
+
+        <div class="form-content">
+            <form id="orchestrationForm">
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error" id="emailError"></div>
+                </div>
+
+                <div class="instrument-section fade-in">
+                    <h3><span class="section-number">1</span>Primary Instrument <span class="required">*</span></h3>
+                    <div class="instrument-select-group">
+                        <div>
+                            <label for="primaryFamily">Instrument Family</label>
+                            <select id="primaryFamily" name="primaryFamily" required>
+                                <option value="">Select family...</option>
+                                <option value="strings">🎻 Strings</option>
+                                <option value="woodwinds">🎷 Woodwinds</option>
+                                <option value="brass">🎺 Brass</option>
+                                <option value="percussion">🥁 Percussion</option>
+                                <option value="voice">🎤 Voice</option>
+                                <option value="other">🎵 Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="primaryInstrument">Specific Instrument</label>
+                            <select id="primaryInstrument" name="primaryInstrument" required disabled>
+                                <option value="">Select instrument...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="text" id="primaryOther" name="primaryOther"
+                        placeholder="Please specify your instrument..." class="other-input">
+                    <div class="error" id="primaryError"></div>
+
+                    <div class="followup-questions" id="primaryFollowup">
+                        <h4>🎭 Performance Comfort Level</h4>
+                        <p class="followup-description">Would you feel comfortable demonstrating this instrument in an
+                            open discussion format for the class? You might be asked to play a few notes and scales in
+                            different ranges and tempos. Demoing specific repertoire would be your prerogative.</p>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="primaryDemo" value="A" required> <span
+                                    class="option-text">🌟 Absolutely! I love making music!</span></label>
+                            <label class="radio-option"><input type="radio" name="primaryDemo" value="B" required> <span
+                                    class="option-text">💰 I might be persuaded for extra credit</span></label>
+                            <label class="radio-option"><input type="radio" name="primaryDemo" value="C" required> <span
+                                    class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                        </div>
+
+                        <h4>📖 Sight-Reading Comfort Level</h4>
+                        <p class="followup-description">Would you feel comfortable sight-reading brief 8 to 32 bar
+                            sketches composed for the instrument by your peers? We expect these readings to be far from
+                            perfect—in fact if you make mistakes, it helps us learn more about the idiomatic features of
+                            the instrument.</p>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="primarySightReading" value="A"
+                                    required> <span class="option-text">🌟 Absolutely! I love making
+                                    music!</span></label>
+                            <label class="radio-option"><input type="radio" name="primarySightReading" value="B"
+                                    required> <span class="option-text">💰 I might be persuaded for extra
+                                    credit</span></label>
+                            <label class="radio-option"><input type="radio" name="primarySightReading" value="C"
+                                    required> <span class="option-text">🙅‍♀️ Not for all the riches in the
+                                    world</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="additionalInstruments"></div>
+
+                <button type="button" class="add-instrument-btn" onclick="addInstrument()">
+                    <span>✨</span> Add Additional Instrument
+                </button>
+
+                <button type="submit" class="submit-btn">Submit Survey</button>
+
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Submitting your survey...</p>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <h3>🎉 Survey Submitted Successfully!</h3>
+                    <p>Thank you for sharing your musical background. This information will help us create the best
+                        possible learning experience for everyone!</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const instrumentFamilies = {
+            strings: [
+                { name: 'Violin', emoji: '🎻' },
+                { name: 'Viola', emoji: '🎻' },
+                { name: 'Cello', emoji: '🎻' },
+                { name: 'Bass', emoji: '🎻' }
+            ],
+            woodwinds: [
+                { name: 'Flute', emoji: '🪈' },
+                { name: 'Oboe', emoji: '🎺' },
+                { name: 'Clarinet', emoji: '🎷' },
+                { name: 'Bassoon', emoji: '🎺' }
+            ],
+            brass: [
+                { name: 'Trumpet', emoji: '🎺' },
+                { name: 'Horn', emoji: '📯' },
+                { name: 'Trombone', emoji: '🎺' },
+                { name: 'Euphonium/Baritone', emoji: '🎺' },
+                { name: 'Tuba', emoji: '🎺' }
+            ],
+            percussion: [
+                { name: 'Percussion Section Instruments', emoji: '🥁' },
+                { name: 'Drum Set', emoji: '🥁' },
+                { name: 'Piano', emoji: '🎹' },
+                { name: 'Harp', emoji: '🪈' },
+                { name: 'Celesta', emoji: '🎹' }
+            ],
+            voice: [
+                { name: 'Soprano', emoji: '🎤' },
+                { name: 'Alto', emoji: '🎤' },
+                { name: 'Tenor', emoji: '🎤' },
+                { name: 'Bass', emoji: '🎤' }
+            ],
+            other: []
+        };
+
+        let additionalInstrumentCount = 0;
+
+        function populateInstrumentSelect(familySelect, instrumentSelect, otherInput, followupDiv) {
+            const family = familySelect.value;
+            const instruments = instrumentFamilies[family] || [];
+
+            instrumentSelect.innerHTML = '<option value="">Select instrument...</option>';
+
+            // Hide followup questions when family changes
+            if (followupDiv) {
+                followupDiv.classList.remove('show');
+            }
+
+            if (family === 'other') {
+                instrumentSelect.disabled = true;
+                otherInput.style.display = 'block';
+                otherInput.required = true;
+                // Show followup for "other" immediately
+                if (followupDiv) {
+                    setTimeout(() => followupDiv.classList.add('show'), 300);
+                }
+            } else {
+                instrumentSelect.disabled = false;
+                otherInput.style.display = 'none';
+                otherInput.required = false;
+
+                instruments.forEach(instrument => {
+                    const option = document.createElement('option');
+                    option.value = instrument.name;
+                    option.textContent = `${instrument.emoji} ${instrument.name}`;
+                    instrumentSelect.appendChild(option);
+                });
+            }
+        }
+
+        function showFollowupQuestions(followupDiv) {
+            if (followupDiv) {
+                setTimeout(() => {
+                    followupDiv.classList.add('show');
+                }, 150);
+            }
+        }
+
+        // Set up primary instrument selects
+        document.getElementById('primaryFamily').addEventListener('change', function () {
+            populateInstrumentSelect(
+                this,
+                document.getElementById('primaryInstrument'),
+                document.getElementById('primaryOther'),
+                document.getElementById('primaryFollowup')
+            );
+        });
+
+        document.getElementById('primaryInstrument').addEventListener('change', function () {
+            if (this.value) {
+                showFollowupQuestions(document.getElementById('primaryFollowup'));
+            }
+        });
+
+        document.getElementById('primaryOther').addEventListener('input', function () {
+            if (this.value.trim()) {
+                showFollowupQuestions(document.getElementById('primaryFollowup'));
+            }
+        });
+
+        // Add radio button selection styling
+        document.addEventListener('change', function (e) {
+            if (e.target.type === 'radio') {
+                // Remove selected class from siblings
+                const radioGroup = e.target.closest('.radio-group');
+                if (radioGroup) {
+                    radioGroup.querySelectorAll('.radio-option').forEach(option => {
+                        option.classList.remove('selected');
+                    });
+                    // Add selected class to current option
+                    e.target.closest('.radio-option').classList.add('selected');
+                }
+            }
+        });
+
+        function addInstrument() {
+            additionalInstrumentCount++;
+            const container = document.getElementById('additionalInstruments');
+
+            const instrumentDiv = document.createElement('div');
+            instrumentDiv.className = 'instrument-section fade-in';
+            instrumentDiv.id = `additional-${additionalInstrumentCount}`;
+
+            instrumentDiv.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h3><span class="section-number">${additionalInstrumentCount + 1}</span>Additional Instrument ${additionalInstrumentCount}</h3>
+                    <button type="button" class="remove-instrument-btn" onclick="removeInstrument('additional-${additionalInstrumentCount}')">✕ Remove</button>
+                </div>
+                
+                <div class="instrument-select-group">
+                    <div>
+                        <label for="additionalFamily${additionalInstrumentCount}">Instrument Family</label>
+                        <select id="additionalFamily${additionalInstrumentCount}" name="additionalFamily${additionalInstrumentCount}">
+                            <option value="">Select family...</option>
+                            <option value="strings">🎻 Strings</option>
+                            <option value="woodwinds">🎷 Woodwinds</option>
+                            <option value="brass">🎺 Brass</option>
+                            <option value="percussion">🥁 Percussion</option>
+                            <option value="voice">🎤 Voice</option>
+                            <option value="other">🎵 Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="additionalInstrument${additionalInstrumentCount}">Specific Instrument</label>
+                        <select id="additionalInstrument${additionalInstrumentCount}" name="additionalInstrument${additionalInstrumentCount}" disabled>
+                            <option value="">Select instrument...</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="text" id="additionalOther${additionalInstrumentCount}" name="additionalOther${additionalInstrumentCount}" placeholder="Please specify your instrument..." class="other-input">
+                
+                <div class="followup-questions" id="additionalFollowup${additionalInstrumentCount}">
+                    <h4>🎭 Performance Comfort Level</h4>
+                    <p class="followup-description">Would you feel comfortable demonstrating this instrument in an open discussion format for the class?</p>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="A"> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="B"> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="C"> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                    </div>
+
+                    <h4>📖 Sight-Reading Comfort Level</h4>
+                    <p class="followup-description">Would you feel comfortable sight-reading brief sketches composed for this instrument by your peers?</p>
+                    <div class="radio-group">
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="A"> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="B"> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="C"> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(instrumentDiv);
+
+            // Set up event listeners for this additional instrument
+            const familySelect = document.getElementById(`additionalFamily${additionalInstrumentCount}`);
+            const instrumentSelect = document.getElementById(`additionalInstrument${additionalInstrumentCount}`);
+            const otherInput = document.getElementById(`additionalOther${additionalInstrumentCount}`);
+            const followupDiv = document.getElementById(`additionalFollowup${additionalInstrumentCount}`);
+
+            familySelect.addEventListener('change', function () {
+                populateInstrumentSelect(this, instrumentSelect, otherInput, followupDiv);
+            });
+
+            instrumentSelect.addEventListener('change', function () {
+                if (this.value) {
+                    showFollowupQuestions(followupDiv);
+                }
+            });
+
+            otherInput.addEventListener('input', function () {
+                if (this.value.trim()) {
+                    showFollowupQuestions(followupDiv);
+                }
+            });
+        }
+
+        function removeInstrument(id) {
+            const element = document.getElementById(id);
+            element.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => element.remove(), 300);
+        }
+
+        function validateForm(formData) {
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            // Validate email
+            const email = formData.get('email');
+            if (!email || !email.includes('@')) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            // Validate primary instrument
+            const primaryFamily = formData.get('primaryFamily');
+            const primaryInstrument = formData.get('primaryInstrument');
+            const primaryOther = formData.get('primaryOther');
+
+            if (!primaryFamily) {
+                document.getElementById('primaryError').textContent = 'Please select a primary instrument family.';
+                isValid = false;
+            } else if (primaryFamily === 'other' && !primaryOther) {
+                document.getElementById('primaryError').textContent = 'Please specify your primary instrument.';
+                isValid = false;
+            } else if (primaryFamily !== 'other' && !primaryInstrument) {
+                document.getElementById('primaryError').textContent = 'Please select your primary instrument.';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        document.getElementById('orchestrationForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            if (!validateForm(formData)) {
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+
+            try {
+                // Prepare data for submission
+                const submissionData = {
+                    email: formData.get('email'),
+                    timestamp: new Date().toISOString(),
+                    primaryInstrument: {
+                        family: formData.get('primaryFamily'),
+                        instrument: formData.get('primaryFamily') === 'other' ? formData.get('primaryOther') : formData.get('primaryInstrument'),
+                        demo: formData.get('primaryDemo'),
+                        sightReading: formData.get('primarySightReading')
+                    },
+                    additionalInstruments: []
+                };
+
+                // Collect additional instruments
+                for (let i = 1; i <= additionalInstrumentCount; i++) {
+                    const family = formData.get(`additionalFamily${i}`);
+                    if (family) {
+                        const instrument = family === 'other' ? formData.get(`additionalOther${i}`) : formData.get(`additionalInstrument${i}`);
+                        if (instrument) {
+                            submissionData.additionalInstruments.push({
+                                family: family,
+                                instrument: instrument,
+                                demo: formData.get(`additionalDemo${i}`) || '',
+                                sightReading: formData.get(`additionalSightReading${i}`) || ''
+                            });
+                        }
+                    }
+                }
+
+                // Submit to your Vercel function
+                const response = await fetch('/api/submit-orchestration', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(submissionData)
+                });
+
+                if (response.ok) {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.style.display = 'none';
+                } else {
+                    throw new Error('Submission failed');
+                }
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your survey. Please try again.');
+                document.getElementById('loading').style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
