@@ -467,79 +467,84 @@
 
         <div class="form-content">
             <form id="orchestrationForm">
-                <div class="form-group">
-                    <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
-                    <div class="error" id="emailError"></div>
-                </div>
+                <!-- <div id="main-form-content"> -->
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="emailError"></div>
+                    </div>
 
-                <div class="instrument-section fade-in">
-                    <h3><span class="section-number">1</span>Primary Instrument <span class="required">*</span></h3>
-                    <div class="instrument-select-group">
-                        <div>
-                            <label for="primaryFamily">Instrument Family</label>
-                            <select id="primaryFamily" name="primaryFamily" required>
-                                <option value="">Select family...</option>
-                                <option value="strings">🎻 Strings</option>
-                                <option value="woodwinds">🎷 Woodwinds</option>
-                                <option value="brass">🎺 Brass</option>
-                                <option value="percussion">🥁 Percussion</option>
-                                <option value="voice">🎤 Voice</option>
-                                <option value="other">🎵 Other</option>
-                            </select>
+                    <div class="instrument-section fade-in">
+                        <h3><span class="section-number">1</span>Primary Instrument <span class="required">*</span></h3>
+                        <div class="instrument-select-group">
+                            <div>
+                                <label for="primaryFamily">Instrument Family</label>
+                                <select id="primaryFamily" name="primaryFamily" required>
+                                    <option value="">Select family...</option>
+                                    <option value="strings">🎻 Strings</option>
+                                    <option value="woodwinds">🎷 Woodwinds</option>
+                                    <option value="brass">🎺 Brass</option>
+                                    <option value="percussion">🥁 Percussion</option>
+                                    <option value="voice">🎤 Voice</option>
+                                    <option value="other">🎵 Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="primaryInstrument">Specific Instrument</label>
+                                <select id="primaryInstrument" name="primaryInstrument" required disabled>
+                                    <option value="">Select instrument...</option>
+                                </select>
+                            </div>
                         </div>
-                        <div>
-                            <label for="primaryInstrument">Specific Instrument</label>
-                            <select id="primaryInstrument" name="primaryInstrument" required disabled>
-                                <option value="">Select instrument...</option>
-                            </select>
+                        <input type="text" id="primaryOther" name="primaryOther"
+                            placeholder="Please specify your instrument..." class="other-input">
+                        <div class="error" id="primaryError"></div>
+
+                        <div class="followup-questions" id="primaryFollowup">
+                            <h4>🎭 Performance Comfort Level</h4>
+                            <p class="followup-description">Would you feel comfortable demonstrating this instrument in
+                                an
+                                open discussion format for the class? You might be asked to play a few notes and scales
+                                in
+                                different ranges and tempos. Demoing specific repertoire would be your prerogative.</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="primaryDemo" value="A" required>
+                                    <span class="option-text">🌟 Absolutely! I love making music!</span></label>
+                                <label class="radio-option"><input type="radio" name="primaryDemo" value="B" required>
+                                    <span class="option-text">💰 I might be persuaded for extra credit</span></label>
+                                <label class="radio-option"><input type="radio" name="primaryDemo" value="C" required>
+                                    <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                            </div>
+
+                            <h4>📖 Sight-Reading Comfort Level</h4>
+                            <p class="followup-description">Would you feel comfortable sight-reading brief 8 to 32 bar
+                                sketches composed for the instrument by your peers? We expect these readings to be far
+                                from
+                                perfect—in fact if you make mistakes, it helps us learn more about the idiomatic
+                                features of
+                                the instrument.</p>
+                            <div class="radio-group">
+                                <label class="radio-option"><input type="radio" name="primarySightReading" value="A"
+                                        required> <span class="option-text">🌟 Absolutely! I love making
+                                        music!</span></label>
+                                <label class="radio-option"><input type="radio" name="primarySightReading" value="B"
+                                        required> <span class="option-text">💰 I might be persuaded for extra
+                                        credit</span></label>
+                                <label class="radio-option"><input type="radio" name="primarySightReading" value="C"
+                                        required> <span class="option-text">🙅‍♀️ Not for all the riches in the
+                                        world</span></label>
+                            </div>
                         </div>
                     </div>
-                    <input type="text" id="primaryOther" name="primaryOther"
-                        placeholder="Please specify your instrument..." class="other-input">
-                    <div class="error" id="primaryError"></div>
 
-                    <div class="followup-questions" id="primaryFollowup">
-                        <h4>🎭 Performance Comfort Level</h4>
-                        <p class="followup-description">Would you feel comfortable demonstrating this instrument in an
-                            open discussion format for the class? You might be asked to play a few notes and scales in
-                            different ranges and tempos. Demoing specific repertoire would be your prerogative.</p>
-                        <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="primaryDemo" value="A" required> <span
-                                    class="option-text">🌟 Absolutely! I love making music!</span></label>
-                            <label class="radio-option"><input type="radio" name="primaryDemo" value="B" required> <span
-                                    class="option-text">💰 I might be persuaded for extra credit</span></label>
-                            <label class="radio-option"><input type="radio" name="primaryDemo" value="C" required> <span
-                                    class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
-                        </div>
+                    <div id="additionalInstruments"></div>
 
-                        <h4>📖 Sight-Reading Comfort Level</h4>
-                        <p class="followup-description">Would you feel comfortable sight-reading brief 8 to 32 bar
-                            sketches composed for the instrument by your peers? We expect these readings to be far from
-                            perfect—in fact if you make mistakes, it helps us learn more about the idiomatic features of
-                            the instrument.</p>
-                        <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="primarySightReading" value="A"
-                                    required> <span class="option-text">🌟 Absolutely! I love making
-                                    music!</span></label>
-                            <label class="radio-option"><input type="radio" name="primarySightReading" value="B"
-                                    required> <span class="option-text">💰 I might be persuaded for extra
-                                    credit</span></label>
-                            <label class="radio-option"><input type="radio" name="primarySightReading" value="C"
-                                    required> <span class="option-text">🙅‍♀️ Not for all the riches in the
-                                    world</span></label>
-                        </div>
-                    </div>
-                </div>
+                    <button type="button" class="add-instrument-btn" onclick="addInstrument()">
+                        <span>✨</span> Add Additional Instrument
+                    </button>
 
-                <div id="additionalInstruments"></div>
-
-                <button type="button" class="add-instrument-btn" onclick="addInstrument()">
-                    <span>✨</span> Add Additional Instrument
-                </button>
-
-                <button type="submit" class="submit-btn">Submit Survey</button>
-
+                    <button type="submit" class="submit-btn">Submit Survey</button>
+                <!-- </div> -->
                 <div class="loading" id="loading">
                     <div class="loading-spinner"></div>
                     <p class="loading-text">Submitting your survey...</p>
@@ -849,7 +854,7 @@
                 //     throw new Error('Submission failed');
                 // }
 
-                writeToTable(submissionData);
+                writeToTable(submissionData, this);
 
             } catch (error) {
                 console.error('Submission error:', error);
@@ -859,7 +864,7 @@
             }
         });
 
-        function writeToTable(submissionData) {
+        function writeToTable(submissionData, form) {
             AWS.config.update({
                 region: "us-east-2",
                 identityPoolId: "us-east-2:946b7ec1-dda0-4ef9-9b2f-e05141fc25d0"
@@ -898,7 +903,7 @@
                     console.log("submission successful");
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
-                    this.style.display = 'none';
+                    form.style.display = 'none';
                 }
             });
         }
