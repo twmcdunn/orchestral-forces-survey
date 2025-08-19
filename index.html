@@ -467,7 +467,7 @@
 
         <div class="form-content">
             <form id="orchestrationForm">
-                <!-- <div id="main-form-content"> -->
+                <div id="main-form-content">
                     <div class="form-group">
                         <label for="email">Email Address <span class="required">*</span></label>
                         <input type="email" id="email" name="email" required>
@@ -544,7 +544,7 @@
                     </button>
 
                     <button type="submit" class="submit-btn">Submit Survey</button>
-                <!-- </div> -->
+                </div>
                 <div class="loading" id="loading">
                     <div class="loading-spinner"></div>
                     <p class="loading-text">Submitting your survey...</p>
@@ -854,7 +854,7 @@
                 //     throw new Error('Submission failed');
                 // }
 
-                writeToTable(submissionData, this);
+                writeToTable(submissionData);
 
             } catch (error) {
                 console.error('Submission error:', error);
@@ -864,7 +864,7 @@
             }
         });
 
-        function writeToTable(submissionData, form) {
+        function writeToTable(submissionData) {
             AWS.config.update({
                 region: "us-east-2",
                 identityPoolId: "us-east-2:946b7ec1-dda0-4ef9-9b2f-e05141fc25d0"
@@ -903,7 +903,8 @@
                     console.log("submission successful");
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('successMessage').style.display = 'block';
-                    form.style.display = 'none';
+                    //form.style.display = 'none';
+                    document.getElementById('main-form-content').style.display = 'none';
                 }
             });
         }
