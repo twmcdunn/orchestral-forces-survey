@@ -688,7 +688,7 @@
                 <div class="instrument-select-group">
                     <div>
                         <label for="additionalFamily${additionalInstrumentCount}">Instrument Family</label>
-                        <select id="additionalFamily${additionalInstrumentCount}" name="additionalFamily${additionalInstrumentCount}">
+                        <select id="additionalFamily${additionalInstrumentCount}" name="additionalFamily${additionalInstrumentCount}" required>
                             <option value="">Select family...</option>
                             <option value="strings">🎻 Strings</option>
                             <option value="woodwinds">🎷 Woodwinds</option>
@@ -700,7 +700,7 @@
                     </div>
                     <div>
                         <label for="additionalInstrument${additionalInstrumentCount}">Specific Instrument</label>
-                        <select id="additionalInstrument${additionalInstrumentCount}" name="additionalInstrument${additionalInstrumentCount}" disabled>
+                        <select id="additionalInstrument${additionalInstrumentCount}" name="additionalInstrument${additionalInstrumentCount}" disabled required>
                             <option value="">Select instrument...</option>
                         </select>
                     </div>
@@ -711,17 +711,17 @@
                     <h4>🎭 Performance Comfort Level</h4>
                     <p class="followup-description">Would you feel comfortable demonstrating this instrument in an open discussion format for the class?</p>
                     <div class="radio-group">
-                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="A"> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
-                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="B"> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
-                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="C"> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="A" required> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="B" required> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalDemo${additionalInstrumentCount}" value="C" required> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
                     </div>
 
                     <h4>📖 Sight-Reading Comfort Level</h4>
                     <p class="followup-description">Would you feel comfortable sight-reading brief sketches composed for this instrument by your peers?</p>
                     <div class="radio-group">
-                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="A"> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
-                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="B"> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
-                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="C"> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="A" required> <span class="option-text">🌟 Absolutely! I love making music!</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="B" required> <span class="option-text">💰 I might be persuaded for extra credit</span></label>
+                        <label class="radio-option"><input type="radio" name="additionalSightReading${additionalInstrumentCount}" value="C" required> <span class="option-text">🙅‍♀️ Not for all the riches in the world</span></label>
                     </div>
                 </div>
             `;
@@ -783,10 +783,6 @@
                 isValid = false;
             } else if (primaryFamily !== 'other' && !primaryInstrument) {
                 document.getElementById('primaryError').textContent = 'Please select your primary instrument.';
-                isValid = false;
-            }
-            else if (Arrays.from(document.querySelectorAll('.radio-group')).some((group) => !group.checked)){
-                alert("Please indicated performance/sight-reading comfort level for all listed instruments.")
                 isValid = false;
             }
 
