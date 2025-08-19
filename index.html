@@ -785,6 +785,10 @@
                 document.getElementById('primaryError').textContent = 'Please select your primary instrument.';
                 isValid = false;
             }
+            else if (document.querySelectorAll('.radio-group').some((group) => !group.checked)){
+                alert("Please indicated performance/sight-reading comfort level for all listed instruments.")
+                isValid = false;
+            }
 
             return isValid;
         }
