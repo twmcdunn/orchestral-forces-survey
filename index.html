@@ -14,21 +14,21 @@
             box-sizing: border-box;
         }
 
-       :root {
+        :root {
             /* Elegant music-inspired palette */
             --primary-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             --secondary-gradient: linear-gradient(135deg, #f8f6f0 0%, #ffffff 100%);
             --accent-gradient: linear-gradient(135deg, #8b1538 0%, #a91b47 100%);
             --success-gradient: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-            
+
             /* Sophisticated shadows */
             --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.12);
             --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
             --shadow-elegant: 0 4px 20px rgba(139, 21, 56, 0.15);
-            
+
             --border-radius: 12px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            
+
             /* Color variables */
             --paper-white: #f8f6f0;
             --ivory: #faf9f6;
@@ -43,7 +43,7 @@
         body {
             font-family: 'Cormorant Garamond', serif;
             background: var(--paper-white);
-            background-image: 
+            background-image:
                 linear-gradient(90deg, rgba(45, 45, 45, 0.03) 1px, transparent 1px),
                 linear-gradient(rgba(45, 45, 45, 0.03) 1px, transparent 1px);
             background-size: 20px 20px;
@@ -99,7 +99,8 @@
             position: relative;
             font-weight: 300;
         }
-/* 
+
+        /* 
         .header glow {
              text-shadow: 
                 0 0 10px var(--gray-medium),
@@ -829,22 +830,24 @@
                     }
                 }
 
-                // Submit to your Vercel function
-                const response = await fetch('/api/submit-orchestration', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(submissionData)
-                });
+                // // Submit to your Vercel function
+                // const response = await fetch('/api/submit-orchestration', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(submissionData)
+                // });
 
-                if (response.ok) {
-                    document.getElementById('loading').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                    this.style.display = 'none';
-                } else {
-                    throw new Error('Submission failed');
-                }
+                // if (response.ok) {
+                //     document.getElementById('loading').style.display = 'none';
+                //     document.getElementById('successMessage').style.display = 'block';
+                //     this.style.display = 'none';
+                // } else {
+                //     throw new Error('Submission failed');
+                // }
+
+                writeToTable(submissionData);
 
             } catch (error) {
                 console.error('Submission error:', error);
@@ -854,19 +857,53 @@
             }
         });
 
+        function writeToTable(submissionData) {
+            var params = {
+                Item: {
+                    EMAIL: {
+                        S: submissionData.email
+                    },
+                    SUBMISSION_TIME: {
+                        N: submissionData.timestamp
+                    },
+                    PRIMARY_INST: {
+                        S: JSON.stringify(submissionData.primaryInstrument)
+                    },
+                    ADDITIONAL_INSTS: {
+                        S: JSON.stringify(submissionData.additionalInstruments)
+                    }
+                },
+                TableName: "ORCHESTRATION_FALL_2025"
+            };
+
+
+            ddb.putItem(params, function (err, data) {
+                if (err) {
+                    console.log("submission failed");
+                    throw new Error('Submission failed');
+                }
+                else {
+                    console.log("submission successful");
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.style.display = 'none';
+                }
+            });
+        }
+
         function sendHeight() {
-  const height = document.documentElement.scrollHeight;
-  window.parent.postMessage(
-    { type: "resize-survey", height: height },
-    "*" // or better: "https://your-parent-domain.com"
-  );
-}
+            const height = document.documentElement.scrollHeight;
+            window.parent.postMessage(
+                { type: "resize-survey", height: height },
+                "*" // or better: "https://your-parent-domain.com"
+            );
+        }
 
-// Send once on load
-window.addEventListener("load", sendHeight);
+        // Send once on load
+        window.addEventListener("load", sendHeight);
 
-// Send again if content changes (e.g. user expands sections)
-new ResizeObserver(sendHeight).observe(document.body);
+        // Send again if content changes (e.g. user expands sections)
+        new ResizeObserver(sendHeight).observe(document.body);
     </script>
 </body>
 
