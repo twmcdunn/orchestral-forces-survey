@@ -876,7 +876,7 @@
                         S: submissionData.email
                     },
                     SUBMISSION_TIME: {
-                        N: submissionData.timestamp
+                        N: submissionData.timestamp + ""
                     },
                     PRIMARY_INST: {
                         S: JSON.stringify(submissionData.primaryInstrument)
