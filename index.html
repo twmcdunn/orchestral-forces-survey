@@ -806,7 +806,7 @@
                 // Prepare data for submission
                 const submissionData = {
                     email: formData.get('email'),
-                    timestamp: new Date().toISOString(),
+                    timestamp: new Date().getSeconds(),
                     primaryInstrument: {
                         family: formData.get('primaryFamily'),
                         instrument: formData.get('primaryFamily') === 'other' ? formData.get('primaryOther') : formData.get('primaryInstrument'),
