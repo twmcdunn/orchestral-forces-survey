@@ -831,6 +831,7 @@
             try {
                 // Prepare data for submission
                 const submissionData = {
+                    firstName: formData.get('name'),
                     email: formData.get('email'),
                     timestamp: new Date().getSeconds(),
                     primaryInstrument: {
@@ -909,6 +910,9 @@
                     },
                     ADDITIONAL_INSTS: {
                         S: JSON.stringify(submissionData.additionalInstruments)
+                    },
+                    FIRST_NAME: {
+                        S: submissionData.firstName
                     }
                 },
                 TableName: "ORCHESTRATION_FALL_2025"
