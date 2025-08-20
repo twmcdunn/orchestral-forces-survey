@@ -132,11 +132,12 @@
             margin-left: 4px;
         }
 
-        .form-grid{
+        .form-grid {
             display: flex;
             justify-content: space-between;
             gap: 20px;
         }
+
         .column-one,
         .column-two {
             flex: 1;
@@ -425,6 +426,24 @@
             font-size: 1.3rem;
         }
 
+        .response-collected {
+            display: none;
+            /* background: linear-gradient(135deg, rgba(129, 255, 239, 0.1) 0%, rgba(240, 103, 180, 0.1) 100%); */
+            background: var(--secondary-gradient);
+            color: black;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(129, 255, 239, 0.3);
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .success-collected h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
         .other-input {
             margin-top: 15px;
             display: none;
@@ -575,6 +594,11 @@
                     <h3>🎉 Survey Submitted Successfully!</h3>
                     <p>Thank you for sharing your musical background. This information will help us create the best
                         possible learning experience for everyone!</p>
+                </div>
+                <div class="response-collected" id="responseCollected">
+                    <h3>😲 Response already collected!</h3>
+                    <p>You already submitted a resonse to this survey. I appreciate the enthusiasum, but really, enough
+                        is enough.</p>
                 </div>
             </form>
         </div>
@@ -896,6 +920,12 @@
             });
             // Create DynamoDB service object
             var ddb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
+
+            ddb.getItem({ KEY: { EMAIL: { S: submissionData.email }, TableName: "ORCHESTRATION_FALL_2025" } },
+                (err, data) => {
+                    if (data) return document.getElementById('responseCollected').style.display = 'block';;
+                }
+            )
 
             var params = {
                 Item: {
